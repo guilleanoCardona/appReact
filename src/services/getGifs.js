@@ -7,12 +7,14 @@ export default function getGifs({ keyword = "morty" } = {}) {
     .then((res) => res.json())
     .then((response) => {
       const { data = [] } = response;
-      const gifs = data.map((image) => {
-        const { images, title, id } = image;
-        const { url } = images.fixed_height_downsampled;
+      if (Array.isArray(data)) {
+        const gifs = data.map((image) => {
+          const { images, title, id } = image;
+          const { url } = images.fixed_height_downsampled;
 
-        return { title, id, url };
-      });
-      return gifs;
+          return { title, id, url };
+        });
+        return gifs;
+      }
     });
 }
