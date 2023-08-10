@@ -4,27 +4,28 @@ import getGifs from "../services/getGifs";
 
 export default function ListOfGifs({ params }) {
   const { keyword } = params;
-  const [loading, setLoading] = useState(false);
-  const [gifs, setGifs] = useState([]);
+  //const [loading, setLoading] = useState(false);
+  const [gifs, setGifs] = useState({ loading: false, results: [] });
 
   useEffect(
     function () {
-      setLoading(true);
+      //setLoading(true);
+      setGifs((actualGifs) => ({ loading: true, results: actualGifs.results }));
+
       getGifs({ keyword }).then((gifs) => {
-        setGifs(gifs);
-        setLoading(false);
+        setGifs({ loading: false, results: gifs });
+        //setGifs(gifs);
+        //setLoading(false);
       });
     },
     [keyword]
   );
 
-  if (loading) {
-    return <i>Cargango...😉️</i>;
-  }
+  if (gifs.loading) return <i>Cargango...😉️</i>;
 
   return (
     <div>
-      {gifs.map(({ id, title, url }) => (
+      {gifs.results.map(({ id, title, url }) => (
         <Gif id={id} key={id} title={title} url={url} />
       ))}
     </div>
