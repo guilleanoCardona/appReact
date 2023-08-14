@@ -1,6 +1,6 @@
 import React from "react";
-import Spinner from "../../components/Spinner";
-import ListOfGifs from "../../components/ListOfGifs";
+import Spinner from "../../components/Spinner/index";
+import ListOfGifs from "../../components/ListOfGifs/index";
 import { useGifs } from "../../hooks/useGifs";
 
 export default function SearchResults({ params }) {

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "wouter";
 //import getGifs from "../../services/getGifs";
-import ListOfGifs from "../../components/ListOfGifs";
+import ListOfGifs from "../../components/ListOfGifs/index";
 import { useGifs } from "../../hooks/useGifs";
 
 const POPULAR_GIFS = ["Matrix", "Venezuela", "Chile", "Colombia", "Ecuador"];
@@ -9,7 +9,7 @@ const POPULAR_GIFS = ["Matrix", "Venezuela", "Chile", "Colombia", "Ecuador"];
 export default function Home() {
   const [keyword, setKeyword] = useState("");
   const [path, pushLocation] = useLocation();
-  const [loading, gifs] = useGifs();
+  const { loading, gifs } = useGifs();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -28,7 +28,7 @@ export default function Home() {
           type="text"
           value={keyword}
         />
-        <button type="button" value="Buscar" />
+        <button />
       </form>
       <h3 className="App-title">Última</h3>
       <ListOfGifs gifs={gifs} />
