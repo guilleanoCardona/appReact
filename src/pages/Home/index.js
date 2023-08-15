@@ -22,24 +22,32 @@ export default function Home() {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <button>Buscar</button>
         <input
           placeholder="Search a gif here ..."
           onChange={handleChange}
           type="text"
           value={keyword}
         />
-        <button />
       </form>
-      <h3 className="App-title">Última</h3>
-      <ListOfGifs gifs={gifs} />
-      <h3 className="App-title">Los Gifs mas populares</h3>
-      <ul>
-        {POPULAR_GIFS.map((popularesGif) => (
-          <li key={popularesGif}>
-            <Link to={`/search/${popularesGif}`}>Gifs de {popularesGif}</Link>
-          </li>
-        ))}
-      </ul>
+      <div className="App-main">
+        <div className="App-result">
+          <h3 className="App-title">Última</h3>
+          <ListOfGifs gifs={gifs} />
+        </div>
+        <div className="App-category">
+          <h3 className="App-title">Los Gifs mas populares</h3>
+          <ul>
+            {POPULAR_GIFS.map((popularesGif) => (
+              <li key={popularesGif}>
+                <Link to={`/search/${popularesGif}`}>
+                  Gifs de {popularesGif}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </>
   );
 }
